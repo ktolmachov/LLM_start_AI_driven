@@ -1,0 +1,8 @@
+README.md
+main.py
+pyproject.toml
+llm_start_ai_driven.egg-info/PKG-INFO
+llm_start_ai_driven.egg-info/SOURCES.txt
+llm_start_ai_driven.egg-info/dependency_links.txt
+llm_start_ai_driven.egg-info/requires.txt
+llm_start_ai_driven.egg-info/top_level.txt

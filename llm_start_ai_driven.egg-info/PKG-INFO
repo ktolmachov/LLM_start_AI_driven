@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: llm_start_ai_driven
+Version: 0.1.0
+Summary: LLM-ассистент в виде Telegram-бота
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: aiogram>=3.0
+Requires-Dist: openai
+Requires-Dist: dotenv
+
+# Домашнее задание после интенсива LLM Start
+
+Репозиторий содержит выполнение домашнего задания после интенсива LLM Start.
+
+**Студент:** Константин Толмачев
+**Статус:** В процессе
+
+Краткое описание: решение включает разработку Telegram-бота-ассистента на базе LLM для консультаций клиентов по услугам компании.
+

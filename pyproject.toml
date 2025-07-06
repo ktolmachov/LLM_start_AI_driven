@@ -1,4 +1,19 @@
 [project]
+name = "llm_start_ai_driven"
+version = "0.1.0"
+description = "LLM-ассистент в виде Telegram-бота"
+readme = "README.md"
+requires-python = ">=3.10"
 dependencies = [
-    "aiogram"
-] 
+    "aiogram>=3.0",
+    "openai",
+    "dotenv",
+    # добавь свои зависимости здесь
+]
+
+[tool.setuptools]
+py-modules = ["main"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
