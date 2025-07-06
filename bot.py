@@ -1,4 +1,5 @@
 import os
+import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import Message
@@ -21,9 +22,8 @@ async def handle_message(message: Message):
         {"role": "system", "content": "Вы — помощник."},
         {"role": "user", "content": message.text}
     ]
-    #reply = await ask_llm(messages)
-    #await message.answer(reply)
-    await message.answer("Временно без ответа от LLM.")
+    reply = await ask_llm(messages)
+    await message.answer(reply)
 
 async def start_bot():
     try:

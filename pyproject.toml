@@ -8,6 +8,7 @@ dependencies = [
     "aiogram>=3.0",
     "openai",
     "dotenv",
+    "asyncio",
     # добавь свои зависимости здесь
 ]
 

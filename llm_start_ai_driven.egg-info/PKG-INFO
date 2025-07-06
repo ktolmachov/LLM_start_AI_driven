@@ -7,6 +7,7 @@ Description-Content-Type: text/markdown
 Requires-Dist: aiogram>=3.0
 Requires-Dist: openai
 Requires-Dist: dotenv
+Requires-Dist: asyncio
 
 # Домашнее задание после интенсива LLM Start
 
