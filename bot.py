@@ -12,17 +12,30 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 bot = Bot(token=TELEGRAM_TOKEN)
 dp = Dispatcher()
 
+# История сообщений: user_id -> list of dict(role, content)
+user_histories = {}
+SYSTEM_PROMPT = "Вы — помощник."
+
 @dp.message(Command("start"))
 async def cmd_start(message: Message):
-    await message.answer("Привет! Я минимальный Telegram-бот.")
+    user_histories[message.from_user.id] = [
+        {"role": "system", "content": SYSTEM_PROMPT}
+    ]
+    await message.answer("Привет! Новый диалог начат.")
 
 @dp.message()
 async def handle_message(message: Message):
-    messages = [
-        {"role": "system", "content": "Вы — помощник."},
-        {"role": "user", "content": message.text}
-    ]
-    reply = await ask_llm(messages)
+    user_id = message.from_user.id
+    if user_id not in user_histories:
+        user_histories[user_id] = [
+            {"role": "system", "content": SYSTEM_PROMPT}
+        ]
+    # Добавляем сообщение пользователя
+    user_histories[user_id].append({"role": "user", "content": message.text})
+    # Отправляем всю историю в LLM
+    reply = await ask_llm(user_histories[user_id])
+    # Добавляем ответ ассистента в историю
+    user_histories[user_id].append({"role": "assistant", "content": reply})
     await message.answer(reply)
 
 async def start_bot():
