@@ -27,7 +27,8 @@
 - config.py — функции для загрузки конфигурации/переменных окружения
 - prompts/ — папка с промптами и справочной информацией для LLM
 - tests/ — тесты (pytest)
-- requirements.txt или pyproject.toml — зависимости
+- pyproject.toml — зависимости (устанавливаются через uv)
+- .env — файл конфигурации (токены, ключи, параметры LLM)
 - Dockerfile, Makefile — для сборки и деплоя
 - doc/ — документация (README.md, vision.md и др.) 
 
