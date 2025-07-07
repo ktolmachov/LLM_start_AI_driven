@@ -1,9 +1,9 @@
 import openai
-from config import OPENROUTER_API_KEY, LLM_MODEL, SYSTEM_PROMPT
+from openai import AsyncOpenAI
+from config import OPENROUTER_API_KEY, LLM_MODEL, SYSTEM_PROMPT, OPENROUTER_BASE_URL
 from logger import log_message
 
-openai.api_key = OPENROUTER_API_KEY
-openai.base_url = "https://openrouter.ai/api/v1"
+client = AsyncOpenAI(api_key=OPENROUTER_API_KEY, base_url=OPENROUTER_BASE_URL)
 
 
 def build_messages(user_messages):
@@ -12,7 +12,7 @@ def build_messages(user_messages):
 async def ask_llm(user_messages, user_id=None):
     messages = build_messages(user_messages)
     log_message(user_id or "system", "llm_request", str(messages))
-    response = await openai.ChatCompletion.acreate(
+    response = await client.chat.completions.create(
         model=LLM_MODEL,
         messages=messages,
     )
