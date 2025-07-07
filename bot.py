@@ -5,6 +5,7 @@ from aiogram.filters import Command
 from aiogram.types import Message
 from llm_client import ask_llm
 from config import TELEGRAM_TOKEN, SYSTEM_PROMPT
+from logger import log_message
 
 bot = Bot(token=TELEGRAM_TOKEN)
 dp = Dispatcher()
@@ -28,10 +29,12 @@ async def handle_message(message: Message):
         ]
     # Добавляем сообщение пользователя
     user_histories[user_id].append({"role": "user", "content": message.text})
+    log_message(user_id, "user", message.text)
     # Отправляем всю историю в LLM
     reply = await ask_llm(user_histories[user_id])
     # Добавляем ответ ассистента в историю
     user_histories[user_id].append({"role": "assistant", "content": reply})
+    log_message(user_id, "assistant", reply)
     await message.answer(reply)
 
 async def start_bot():

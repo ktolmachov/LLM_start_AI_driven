@@ -1,21 +1,20 @@
 import openai
 from config import OPENROUTER_API_KEY, LLM_MODEL, SYSTEM_PROMPT
-import logging
+from logger import log_message
 
 openai.api_key = OPENROUTER_API_KEY
 openai.base_url = "https://openrouter.ai/api/v1"
 
-logging.basicConfig(level=logging.INFO, filename='logs\\bot.log')
 
 def build_messages(user_messages):
     return [{"role": "system", "content": SYSTEM_PROMPT}] + user_messages
 
-async def ask_llm(user_messages):
+async def ask_llm(user_messages, user_id=None):
     messages = build_messages(user_messages)
-    logging.info('LLM request: %s', messages)
+    log_message(user_id or "system", "llm_request", str(messages))
     response = await openai.ChatCompletion.acreate(
         model=LLM_MODEL,
         messages=messages,
     )
-    logging.info('LLM response: %s', response)
+    log_message(user_id or "system", "llm_response", str(response))
     return response.choices[0].message.content 
