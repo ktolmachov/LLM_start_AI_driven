@@ -4,24 +4,20 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import Message
 from llm_client import ask_llm
-from dotenv import load_dotenv
-
-load_dotenv()
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+from config import TELEGRAM_TOKEN, SYSTEM_PROMPT
 
 bot = Bot(token=TELEGRAM_TOKEN)
 dp = Dispatcher()
 
 # История сообщений: user_id -> list of dict(role, content)
 user_histories = {}
-SYSTEM_PROMPT = "Вы — помощник."
 
 @dp.message(Command("start"))
 async def cmd_start(message: Message):
     user_histories[message.from_user.id] = [
         {"role": "system", "content": SYSTEM_PROMPT}
     ]
-    await message.answer("Привет! Новый диалог начат.")
+    await message.answer("Привет! Я бот-консультант. Задавай вопросы об услугах компании.")
 
 @dp.message()
 async def handle_message(message: Message):

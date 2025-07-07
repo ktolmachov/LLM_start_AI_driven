@@ -5,10 +5,10 @@ description = "LLM-ассистент в виде Telegram-бота"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "aiogram>=3.0",
     "openai",
     "dotenv",
     "asyncio",
+    "python-dotenv",
     # добавь свои зависимости здесь
 ]
 
