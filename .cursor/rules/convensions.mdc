@@ -32,6 +32,21 @@ alwaysApply: true
 * Не создавай дополнительные директории без необходимости
 * Используй относительные импорты внутри проекта
 
+```
+LLM_start_AI_driven/
+├── bot.py           # Telegram бот и обработка сообщений
+├── config.py        # Загрузка конфигурации
+├── llm_client.py    # Взаимодействие с LLM API
+├── logger.py        # Настройка логирования
+├── main.py          # Точка входа приложения
+├── doc/            # Документация
+│   ├── product_idea.md
+│   ├── tasklist.md
+│   └── vision.md
+└── tests/          # Тесты
+    ├── test_bot.py
+    ├── test_config.py
+    └── test_llm.py
 ---
 
 ### Работа с зависимостями
